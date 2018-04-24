@@ -1,0 +1,36 @@
+{
+    "name": "upaid/logmasker",
+    "description": "Sensitive Data Masker for logs",
+    "type": "vcs",
+    "require": {
+        "php": ">=7.1",
+        "illuminate/support": ">=5.5.0",
+        "illuminate/config": ">=5.5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=5.7.0",
+        "mockery/mockery": "^0.9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Upaid\\Logmasker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Upaid\\Logmasker\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Upaid\\Logmasker\\Providers\\LogmaskerProvider",
+                "Upaid\\Logmasker\\Providers\\MacroProvider"
+            ],
+            "aliases": {
+                "Logmasker": "Upaid\\Logmasker\\Facades\\LogmaskerFacade"
+            }
+        }
+    },
+    "license": "MIT"
+}
