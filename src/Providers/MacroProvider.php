@@ -19,6 +19,13 @@ class MacroProvider extends ServiceProvider
                 if (is_array($value) || is_object($value)) {
                     return (new Collection($value))->mapSensitiveData();
                 }
+                if ($key === 0 && is_string($value) && (count(explode('{', $value)) > 1)) {
+                    preg_match_all('/\{(?:[^{}]|(?R))*\}/x', $value, $matches);
+                    foreach ($matches[0] as $singleJson) {
+                        $value = str_replace($singleJson, (new Collection(json_decode($singleJson, true)))->mapSensitiveData(), $value);
+                    }
+                    return $value;
+                }
                 if($value && !is_numeric($key)){
                     if (in_array($key, config('logmasker.mask_all.fields'))) {
                         $value = LogmaskerFacade::maskAll($value);
