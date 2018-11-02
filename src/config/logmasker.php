@@ -29,5 +29,11 @@ return [
             'pan',
             'accountnumber'
         ]
-    ]
+    ],
+    'mask_replace' => [
+        'replacer' => '*******',
+        'fields' => [
+            'image',
+        ],
+    ],
 ];

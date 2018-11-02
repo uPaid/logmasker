@@ -33,6 +33,9 @@ class MacroProvider extends ServiceProvider
                     if (in_array($key, config('logmasker.mask_partial.fields'))) {
                         $value = LogmaskerFacade::maskPartial($value);
                     }
+                    if (in_array($key, config('logmasker.mask_replace.fields'))) {
+                        $value = LogmaskerFacade::maskReplace();
+                    }
                 }
                 return $value;
             });

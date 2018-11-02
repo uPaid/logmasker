@@ -32,6 +32,12 @@ class Logmasker
         return substr_replace($value, $this->config->get('logmasker.mask_partial.replacer'), $this->config->get('logmasker.mask_partial.start'), $this->config->get('logmasker.mask_partial.length'));
     }
 
+    public function maskReplace():string
+    {
+        return $this->config->get('logmasker.mask_replace.replacer');
+    }
+
+
     protected function normalize():Collection
     {
         if ($this->isXML()) {
