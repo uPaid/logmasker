@@ -27,13 +27,13 @@ class MacroProvider extends ServiceProvider
                     return $value;
                 }
                 if($value && !is_numeric($key)){
-                    if (in_array($key, config('logmasker.mask_all.fields'))) {
+                    if (config('logmasker.mask_partial.fields') && in_array($key, config('logmasker.mask_all.fields'))) {
                         $value = LogmaskerFacade::maskAll($value);
                     }
-                    if (in_array($key, config('logmasker.mask_partial.fields'))) {
+                    if (config('logmasker.mask_partial.fields') && in_array($key, config('logmasker.mask_partial.fields'))) {
                         $value = LogmaskerFacade::maskPartial($value);
                     }
-                    if (in_array($key, config('logmasker.mask_replace.fields'))) {
+                    if (config('logmasker.mask_replace.fields') && in_array($key, config('logmasker.mask_replace.fields'))) {
                         $value = LogmaskerFacade::maskReplace();
                     }
                 }
