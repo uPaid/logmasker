@@ -66,10 +66,11 @@ class Logmasker
     protected function isXML():bool
     {
         libxml_use_internal_errors(true);
-        $xml = @simplexml_load_string($this->data);
-        if ($xml) {
-            $this->data = $xml;
-            return true;
+        if(is_string($this->data) && ($xml = @simplexml_load_string($this->data))) {
+            if ($xml) {
+                $this->data = $xml;
+                return true;
+            }
         }
         return false;
     }
